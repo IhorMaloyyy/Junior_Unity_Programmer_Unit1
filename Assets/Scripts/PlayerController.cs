@@ -1,11 +1,14 @@
 using UnityEngine;
+using TMPro;
 
 public class PlayerController : MonoBehaviour
 {
-    /*[SerializeField] private float speed = 15.0f;*/
+    private float speed;
     [SerializeField] private float turnSpeed = 100.0f;
     private Rigidbody playerRb;
     [SerializeField] private GameObject centerOfMass;
+
+    [SerializeField] private TextMeshProUGUI speedometerText;
 
     [SerializeField] private float horsePower;
     private float horizontalInput;
@@ -23,5 +26,7 @@ public class PlayerController : MonoBehaviour
         playerRb.AddRelativeForce(Vector3.forward * horsePower * verticalInput);
         /*transform.Translate(Vector3.forward * Time.deltaTime * speed * forwardInput);*/
         transform.Rotate(Vector3.up, Time.deltaTime * turnSpeed * horizontalInput);
+        speed = Mathf.Round(playerRb.velocity.magnitude * 3.6f);
+        speedometerText.SetText($"Speed: {speed} km/h");
     }
 }
