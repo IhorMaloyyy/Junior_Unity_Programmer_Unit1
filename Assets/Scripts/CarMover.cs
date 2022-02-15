@@ -1,17 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class CarMover : MonoBehaviour
 {
-    private float speed = 15.0f;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
+    [SerializeField] private float speed = 15.0f;
+  
     void Update()
     {
         transform.Translate(Vector3.back * Time.deltaTime * speed);
